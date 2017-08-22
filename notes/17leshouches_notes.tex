@@ -1,4 +1,5 @@
 \documentclass[12pt]{article}
+\usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{mattoon,hyperref,float}
 \usepackage[group-separator={,}]{siunitx}
 \usepackage{tikz}
@@ -45,13 +46,13 @@ The best way to derive these conservation equations is to start in Eulerian form
 
 
 In Eulerian form, we can write any conservation law as
-\begin{multline}
-\text{Storage rate of $X$ in the box} + \text{Export rate of $X$ out of the box} \\ = \text{Sources of $X$ in the box} \, , \label{conservation}
-\end{multline}
-where $X$ is either mass, momentum in one of the three independent directions, or energy.  Here, the ``box'' is some box-shaped region -- perhaps a cube -- that has a fixed size, shape, orientation, and position with respect to the chosen coordinate system (typically, $x$, $y$, and $z$).  It is most important that this box be stationary: the fluid can and will pass through the box, but the box that we consider must not move.  For simplicity, we will imagine a box whose edges are parallel to the $x$, $y$, and $z$ axes and that have lengths $L_x$, $L_y$, and $L_z$, respectively; see Figure \ref{imaginary_box}.
+\begin{gather}
+\substack{\text{\normalsize Storage rate of $X$}\\\text{\normalsize in the box}} \quad + \quad \substack{\text{\normalsize Export rate of $X$}\\\text{\normalsize out of the box}} \quad = \quad \substack{\text{\normalsize Sources of $X$}\\\text{\normalsize in the box}} \, , \label{conservation}
+\end{gather}
+where $X$ is either mass, momentum in one of the three independent directions, or energy.  Here, the ``box'' is some box-shaped region -- perhaps a cube -- that has a fixed size, shape, orientation, and position with respect to the chosen coordinate system (typically, $x$, $y$, and~$z$).  It is most important that this box be stationary: the fluid can and will pass through the box, but the box that we consider must not move.  For simplicity, we will imagine a box whose edges are parallel to the $x$, $y$, and $z$ axes and that have lengths $L_x$, $L_y$, and $L_z$, respectively; see Figure~\ref{imaginary_box}.
 
 
-\begin{figure}
+\begin{figure}[b]
 \begin{center}
 \begin{tikzpicture}
   \draw[thick](3,2,0)--(0,2,0)--(0,2,2)--(3,2,2)--(3,2,0)--(3,0,0)--(3,0,2)--(0,0,2)--(0,2,2);
@@ -61,7 +62,7 @@ where $X$ is either mass, momentum in one of the three independent directions, o
   \draw(1.5,2.3,0) node{$L_x$};
   \draw(-0.3, 2.2, 1) node{$L_y$};
   \draw(-0.3, 1, 2) node{$L_z$};
-  
+
           %% Planes
         \coordinate (O) at (-3,-0.5,0);
         \coordinate (x) at (-2,-0.5,0);
@@ -108,7 +109,7 @@ Altogether, the net amount of something being exported through the faces of the 
 \]
 
 
-The only thing left to figure out, then, are what the sources of $X$ are.  For mass, there are none:
+The only thing left to figure out, then, is what the sources of $X$ are.  For mass, there are none:
 \[
 \text{Sources of mass to the box} = 0 \, .
 \]
@@ -116,7 +117,7 @@ For momentum, there are gravity and pressure forces:
 \[
 \text{Sources of momentum to the box} = V \vec{g} - V \grad p \, .
 \]
-Here, $g = (0,0,-9.81\text{ m s$^{-2}$})$ is the gravitational acceleration vector and $p$ is the fluid pressure\footnote{Noting that the pressure of a fluid is isotropic (the same in all directions) and recalling that pressure is simply force per area, the pressure-gradient term $-V \grad p$ can be derived by considering the forces on the faces of the box.}.  For energy, radiation and pressure work are the sources of energy that we need to worry about\footnote{The diffusive flux of energy can be important, especially near the surface, but we will ignore that for simplicity.}:
+Here, $\vec{g} = (0,0,-9.81\text{ m s$^{-2}$})$ is the gravitational acceleration vector and $p$ is the fluid pressure\footnote{Noting that the pressure of a fluid is isotropic (the same in all directions) and recalling that pressure is simply force per area, the pressure-gradient term $-V \grad p$ can be derived by considering the forces on the faces of the box.}.  For energy, radiation and pressure work are the sources of energy that we need to worry about\footnote{The diffusive flux of energy can be important, especially near the surface, but we will ignore that for simplicity.}:
 \[
 \text{Sources of energy to the box} = V Q - V \grad \cdot (p \vec{u})\, .
 \]
@@ -136,7 +137,7 @@ What is $E$?  For a dry atmosphere, the energy in the box is a sum of three type
 \begin{equation}
 E = \underbrace{c_v T}_{\text{internal}} + \underbrace{u^2/2}_{\text{kinetic}} + \underbrace{gz}_{\text{gravitational}} \, , \label{Edef}
 \end{equation}
-where $c_v \approx 700$ J kg$^{-1}$ K$^{-1}$ is the specific heat capacity of air at constant volume, $u$ is a shorthand\footnote{Note that $u$ is used for both the $x$ component of the wind and for the magnitude of the velocity.  This overloading of the variable $u$ is typical.  Context should make it clear which meaning is being used.} for $|\vec{u}| = \sqrt{u^2 + v^2 + w^2}$, and $g \approx 10$ m s$^{-2}$ is the magnitude of the gravitational acceleration.  Note that we made choices about what constitutes ``zero energy''.  For the internal energy, we have chosen ``zero internal energy'' to be at absolute zero.  For the kinetic energy, we have chosen ``zero kinetic energy'' to be when $\vec{u} = 0$ in our chosen reference frame.  For the gravitational potential energy, we have chosen ``zero gravitational potential energy'' to be at $z=0$ in our chosen reference frame.  We are always free to make these choices, or for that matter, any other set of choices.  To see why, note that we can multiply equation (\ref{mass_eulerian}) by any constant we want and add it to equation (\ref{energy_eulerian}); that effectively adds that constant to $E$, which can be interpreted as adding that constant to any one of the internal, kinetic, and gravitational energies, thereby changing where their zero-point values occur.
+where $c_v \approx 700$ J kg$^{-1}$ K$^{-1}$ is the specific heat capacity of air at constant volume, $u$ is a shorthand\footnote{Note that $u$ is used for both the $x$ component of the wind and for the magnitude of the velocity.  This overloading of the variable $u$ is typical.  Context should make it clear which meaning is being used.} for $|\vec{u}| = \sqrt{u^2 + v^2 + w^2}$, and $g \approx 10$ m s$^{-2}$ is the magnitude of the gravitational acceleration.  Note that we made choices about what constitutes ``zero energy''.  For the internal energy, we have chosen ``zero internal energy'' to be at absolute zero.  For the kinetic energy, we have chosen ``zero kinetic energy'' to be when $\vec{u} = 0$ in our chosen reference frame.  For the gravitational potential energy, we have chosen ``zero gravitational potential energy'' to be at $z=0$ in our chosen reference frame.  We are always free to make these choices, or for that matter, any other set of choices.  To see why, note that we can multiply equation~(\ref{mass_eulerian}) by any constant and add it to equation (\ref{energy_eulerian}); that effectively adds that constant to $E$, which can be interpreted as adding that constant to any one of the internal, kinetic, and gravitational energies, thereby changing where their zero-point values occur.
 
 
 To understand the Earth's atmosphere, we must understand its energetics.  In particular, we need to understand how air parcels are able to move up and down in the atmosphere.  Moving laterally is pretty simple, but moving up and down requires an addition or removal of energy, either through phase changes of water or through radiative heating.  Since that up-and-down movement is utterly critical to how the atmosphere works, we need to understand its energetics.
@@ -158,7 +159,7 @@ Therefore, the tropopause air is {\text higher} in energy by \num{80000} J.
 \begin{tikzpicture}
   \draw[dashed](8,0)--(0,0);
   \draw(4,0.2) node{tropopause, $z=15$ km, $T=200$ K};
-  
+
   \draw[thick](8,-2)--(0,-2);
   \draw(4,-1.8) node{surface, $z=0$ km, $T=300$ K};
   \draw(4,-0.8) node{Static atmosphere};
@@ -194,7 +195,7 @@ By the definition of the Lagrangian derivative in equation (\ref{ddt}), this can
 \frac{d}{dt} \vec{u} &= \vec{g} - \frac{1}{\rho} \grad p \\
 \rho \frac{d}{dt} E &= Q - \grad \cdot (p \vec{u}) \, .
 \end{align}
-The former can be turned into a kinetic and potential energy equation by dotting with $\vec{u}$, 
+The former can be turned into a kinetic and potential energy equation by dotting with $\vec{u}$,
 \[
 \frac{d}{dt} \left( \frac{1}{2} u^2 + gz \right) = - \frac{1}{\rho} \vec{u} \grad p \, .
 \]
@@ -268,7 +269,7 @@ and then as
 \[
 \ddt \log(\theta) = \frac{Q}{c_p \rho T} \, ,
 \]
-or as 
+or as
 \begin{equation}
 \ddt \theta = \frac{\theta}{c_p \rho T} Q \, , \label{potential}
 \end{equation}
@@ -282,7 +283,7 @@ is called potential temperature.  The variable $\theta$ is the temperature that 
 \]
 
 
-Our ultimate goal is to find the specific cooling (J kg$^{-1}$) that is required to bring a tropopause air parcel down to the surface.  During the time $\Delta t$, the net specific cooling of the parcel is 
+Our ultimate goal is to find the specific cooling (J kg$^{-1}$) that is required to bring a tropopause air parcel down to the surface.  During the time $\Delta t$, the net specific cooling of the parcel is
 \[
 \int_0^{\Delta t} dt \, \frac{Q}{\rho} \, .
 \]
@@ -291,7 +292,7 @@ For the sake of intuition, it is sometimes convenient to talk about a heating or
 \int_0^{\Delta t} dt\, \frac{Q}{\rho} \quad [\text{J/kg}] \qquad \Longleftrightarrow \qquad \frac{1}{c_p} \int_0^{\Delta t} dt \, \frac{Q}{\rho} \quad [\text{K}] \, .
 \]
 Note that the right-hand side of (\ref{potential}) is not quite equal to this.  It has a factor of $\theta/T$ inside the integral.  Nevertheless, we can approximate that factor.
- 
+
 
 Let us compare the surface and tropopause.   At the surface, $T = 300$ K and $p = 10^5$ Pa, so $\theta = 300 (1)^{R/c_p} = 300$ K.  At the tropopause, $T = 200$ K and $p = 0.13 \times 10^5$ Pa, so $\theta = 200 (1/0.13)^{R/c_p} = 360$ K.  We do not know the time-averaged $\theta/T$, but we can approximate $\theta$ and $T$ in that ratio as averages of their tropopause and surface values, which are $(360+300)/2 = 330$ K and $(200+300)/2 = 250$ K, respectively.  Then,
 \begin{align}
@@ -342,7 +343,7 @@ Let us compare the surface and tropopause.   At the surface, $T = 300$ K and $z 
 &= \num{350000} \text{ J kg}^{-1} \\
 \Delta \dse &= \num{350000}-\num{300000} = \num{50000} \text{ J kg}^{-1} \, .
 \end{align}
-The tropopause air is {\it higher} in dry static energy by 50,000 J kg$^{-1}$.  Dividing by $c_p = 1000$ J kg$^{-1}$ K$^{-1}$, this corresponds to 50 K.  So, we see that our approximate calculation of 45 K from the $\theta$ equation was pretty close to the actual answer.
+The tropopause air is {\it higher} in dry static energy by 50,000~J kg$^{-1}$.  Dividing by $c_p = 1000$~J~kg$^{-1}$ K$^{-1}$, this corresponds to 50 K.  So, we see that our approximate calculation of 45 K from the $\theta$ equation was pretty close to the actual answer.
 
 
 Needless to say, DSE is super useful.  It has gotten us the amount of cooling needed to bring a parcel from the tropopause to the surface, or, vice versa, the amount of heating to bring a parcel from the surface to the tropopause.  In the absence of heating, DSE is conserved (so long as we obey the conditions).  So, if we lift a parcel from the surface to the tropopause without any heating, then its original DSE of $30 \times 10^4$ J/kg is conserved, so the temperature becomes $(30 \times 10^4 - 10 \times 15000)/1000 = 150$ K.  Not surprisingly, that is 50 K less than the temperature of the tropopause air; this is the 50 K that must be added as we lift the parcel if we want it to be neutrally buoyant at the tropopause.
@@ -351,7 +352,7 @@ Needless to say, DSE is super useful.  It has gotten us the amount of cooling ne
 Note that we can restate all of this very simply.  Conservation of DSE implies that $dT/dz = -g/c_p = -10$ K/km.  This is just the dry adiabatic lapse rate.  As atmospheric scientists, we recite this ten times before we go to bed and ten times when we wake up.
 
 
-But, do not use conservation of DSE blindly.  If we lift the surface parcel to 40 km in the stratosphere, what will the temperature of the parcel be?  As we saw above, a parcel with a temperature of 300 K at the surface has a DSE of 300 kJ kg$^{-1}$.  
+But, do not use conservation of DSE blindly.  If we lift the surface parcel to 40 km in the stratosphere, what will the temperature of the parcel be?  As we saw above, a parcel with a temperature of 300 K at the surface has a DSE of 300 kJ kg$^{-1}$.
 
 At 40 km, the parcel's DSE would be
 \[
@@ -415,7 +416,7 @@ where the subscript $e$ reminds us that this equation is meant for the environme
 
 The atmosphere's energy cycle works like this: the Sun heats the ocean, the ocean cools itself by evaporating water, the resulting water vapor is used by clouds to power their way to the upper troposphere, that causes subsidence everywhere else by continuity, and that adiabatic heating by subsidence is matched by radiative and evaporative cooling.  Sounds simple enough, but there are a lot of questions:
 \begin{itemize}
-\item What sets the value of $\ppz \dse{}$ or, equivalently, $T(z)$? 
+\item What sets the value of $\ppz \dse{}$ or, equivalently, $T(z)$?
 \item What sets $Q_{e,\text{radiation}}$ or, equivalently, what sets the distribution of humidity?
 \item What sets $Q_{e,\text{evaporation}}$ or, equivalently, what is the fate of condensed water?
 \item How is $Q_{c,\text{condensation}}$ affected by the turbulent entrainment of dry air?
@@ -426,7 +427,7 @@ These are some of the biggest unresolved questions in atmospheric science.
 \section{How do GCMs work?}
 
 
-In Earth's atmosphere, cloudy updrafts have a typical width of around 1 km.  Global climate models (GCMs), on the other hand, have a typical grid spacing that ranges from 25--200 km.  Therefore, the GCM grid spacing is much too large to resolve cloudy updrafts, at least not motions that faithfully represent true moist convection.  
+In Earth's atmosphere, cloudy updrafts have a typical width of around 1 km.  Global climate models (GCMs), on the other hand, have a typical grid spacing that ranges from 25--200 km.  Therefore, the GCM grid spacing is much too large to resolve cloudy updrafts, at least not motions that faithfully represent true moist convection.
 
 
 To understand how GCMs deal with this problem, it is sufficient to consider a single column of a GCM.  In fact, a single column of a GCM is often isolated and used for research purposes all on its own.  Isolated in this way, we call such a thing a single-column model (SCM).  But how can an SCM possibly capture the dominant energy balance in the clear air?  As we have learned, the radiative cooling of clear air is balanced by having the clear air sink.  In an SCM, however, there is nowhither for the air to go, and nowhence to come.
@@ -567,7 +568,7 @@ Although the expression for $b_m(x,z,t)$ is a bit complicated, its behavior is s
 Since the integrated buoyancy within each pulse is finite, this also means that the buoyancy in each pulse is finite valued for all $t>0$.
 
 
-Let us put some numbers to these things.  For $N_1 = 0.01$ s$^{-1}$, $N_2 = 0.025$ s$^{-1}$, $m = \pi/H$, and $H = 15$ km (characteristic values for Earth's tropics), 
+Let us put some numbers to these things.  For $N_1 = 0.01$ s$^{-1}$, $N_2 = 0.025$ s$^{-1}$, $m = \pi/H$, and $H = 15$ km (characteristic values for Earth's tropics),
 \begin{align}
 d\text{FWHM}/dt &\approx \frac{N_1}{N_2} \frac{H N_1}{\pi} \\
 &\approx \frac{.01}{.025} \frac{15 \times 10^3 \times .01}{3} \\
@@ -583,7 +584,7 @@ c_{gx} &= N_1/m \\
 So, we see that the speed which which each pulse widens is comparable in magnitude to its speed of propagation.
 
 
-How can we understand this behavior?  Putting a plane wave $b_m \propto \exp(-i\omega t + ikx + imz)$ into 
+How can we understand this behavior?  Putting a plane wave $b_m \propto \exp(-i\omega t + ikx + imz)$ into
 \[
 \partial_t^2 \partial_z^2 b_m + N^2 \partial_x^2 b_m = 0 \, ,
 \]
@@ -756,7 +757,7 @@ we can take $\ppz$ of this and divide by $q_v^*$ to find
 \begin{equation}
 \ppz \log(q_v^*) = \ppz \log(p_v^*) - \ppz \log(p) \, . \label{ppz_log_qvs}
 \end{equation}
-So, to figure out how $q_v^*$ varies in the vertical, we need to find $\ppz \log(p_v^*)$ and $\ppz \log(p)$.  
+So, to figure out how $q_v^*$ varies in the vertical, we need to find $\ppz \log(p_v^*)$ and $\ppz \log(p)$.
 
 
 From the Clausius-Clapeyron relation, we know that $p_v^*$ varies with temperature according to
@@ -807,7 +808,7 @@ Solving for $\Gamma$, we get
 This is the moist-adiabatic lapse rate.
 
 
-In very cold temperatures, terms multiplied by $q_v^*$ are small and $\Gamma = g/c_p = 10$ K km$^{-1}$.  This makes sense: in cold climates, water vapor is so scarce that its presence should have a negligible impact on the lapse rate.  This is true in the tropical upper troposphere.  At the bottom of the tropical free troposphere, where $q_v \approx 0.02$, we can use the fact that $R_v \approx 500$ J kg$^{-1}$ K$^{-1}$ and $L \approx 2.5 \times 10^6$ J kg$^{-1}$ to find that 
+In very cold temperatures, terms multiplied by $q_v^*$ are small and $\Gamma = g/c_p = 10$ K km$^{-1}$.  This makes sense: in cold climates, water vapor is so scarce that its presence should have a negligible impact on the lapse rate.  This is true in the tropical upper troposphere.  At the bottom of the tropical free troposphere, where $q_v \approx 0.02$, we can use the fact that $R_v \approx 500$ J kg$^{-1}$ K$^{-1}$ and $L \approx 2.5 \times 10^6$ J kg$^{-1}$ to find that
 \begin{align}
 \Gamma &= \frac{10 + \frac{0.02 \times 2.5 \times 10^6 \times 10}{300 \times 300}}{1000 + \frac{0.02 \times (2.5 \times 10^6)^2}{500 \times 300^2}} \\
 &= 4 \text{ K km}^{-1} \, .
@@ -835,7 +836,7 @@ Now, we can write the two mass-conservation equations as
 This assumes that there is no large-scale ascent or descent in the column of atmosphere.  Since $\sigma_e = 1 - \sigma_c$ and $\sigma_e\rho w_e = -\sigma_c \rho w_c$, these are redundant equations, so we need only keep one of these equations.  We will retain the first one.  By scale analysis, we can reduce the complexity even further.  For deep convection, the characteristic scales of $t$, $z$, $w_c$, $\rho$, and $\sigma_c$ are, respectively,
 \begin{align}
 T &= 10^5 \text{ s} \\
-H &= 10^4 \text{ m} \\ 
+H &= 10^4 \text{ m} \\
 W_c &= 10 \text{ m s}^{-1} \\
 P &= 1 \text{ kg m}^{-3} \\
 \Sigma_c &= 10^{-3} \, .
@@ -847,9 +848,9 @@ In summary, the continuity equation for a bulk-plume atmosphere (with no large-s
 \begin{equation}
 \ppz M = e - d \, . \label{M_e_d}
 \end{equation}
-Introducing the fractional entrainment $\varepsilon$ (units of m$^{-1}$) and fractional entrainment $\delta$ (units of m$^{-1}$), which are related to $e$ and $d$ by $e = \varepsilon M$ and $d = \delta M$, we can write (\ref{M_e_d}) as 
+Introducing the fractional entrainment $\varepsilon$ (units of m$^{-1}$) and fractional entrainment $\delta$ (units of m$^{-1}$), which are related to $e$ and $d$ by $e = \varepsilon M$ and $d = \delta M$, we can write (\ref{M_e_d}) as
 \[
-\ppz M = M (\varepsilon - \delta) 
+\ppz M = M (\varepsilon - \delta)
 \]
 or
 \[
@@ -926,7 +927,7 @@ To begin, we must construct the bulk-plume equations for water vapor in an atmos
 Since $M$ is the total mass flux and $q_v$ is a mass fraction (as opposed to a mixing ratio), there should technically be a $-c$ on the right-hand side of equation (\ref{M_bulk}) to account for the loss of mass due to condensation.  For small $q_v^*$, as in Earth's atmosphere, this term has a negligible impact and its inclusion greatly complicates the equations, so it has been omitted\footnote{This choice is analogous to the treatment of mass in the Boussinesq equations, in which density is held constant for the purposes of the conservation-of-mass equation even though it is effectively removed and added by the ``heating'' $Q$ in the equation for buoyancy}.   Defining the fractional entrainment and detrainment rates as $\varepsilon = e/M$ and $\delta = d/M$, the mass flux $M$ can be eliminated from these equations to yield
 \begin{eqnarray}
 \ppz q_v^* &=& \varepsilon (q_v - q_v^*) - c/M \label{qvs_bulk_2} \\
-- \ppz q_v &=& \delta (q_v^* - q_v) + \alpha c / M \, . \label{qv_bulk_2} 
+- \ppz q_v &=& \delta (q_v^* - q_v) + \alpha c / M \, . \label{qv_bulk_2}
 \end{eqnarray}
 The gross condensational heating is $Lc$ and the gross evaporative cooling is $\alpha Lc$.  Therefore, the precipitation efficiency PE is equal to $(Lc-\alpha Lc)/(Lc) = 1-\alpha$.
 
@@ -934,7 +935,7 @@ The gross condensational heating is $Lc$ and the gross evaporative cooling is $\
 Writing $q_v$ as $q_v = \text{RH} q_v^*$ and assuming that the fractional variations in RH are small over the distance $1/\gamma$, i.e., $\ppz \log(\text{RH}) \ll \ppz \log(q_v^*)$, we can approximate these equations as
 \begin{eqnarray}
 -\gamma q_v^* &=& \varepsilon (\text{RH} - 1) q_v^* - c/M \label{bpc_2} \\
-\text{RH} \gamma q_v^* &=& \delta (1 - \text{RH}) q_v^* + \alpha c/M \, . \label{bpe_2} 
+\text{RH} \gamma q_v^* &=& \delta (1 - \text{RH}) q_v^* + \alpha c/M \, . \label{bpe_2}
 \end{eqnarray}
 These two equations can be solved for RH and $c/M$, giving
 \begin{eqnarray}
@@ -984,7 +985,7 @@ Since $\alpha$ and RH are positive by definition, either $A$ and $B$ are both po
 In section \ref{sec_adiabatic_lapse}, we derived an expression for the moist-adiabatic lapse rate.  In reality, the lapse rate of the tropical free troposphere is larger than that for a moist adiabat; the real atmosphere is much closer to the temperature of entraining moist convection.  Following \citet{15cape}, we can derive an expression for the moist-entraining lapse rate by assuming that $M$, RH, and PE (i.e., $1-\alpha$) are all constant with height.  The constancy of $M$ with height then implies that $\varepsilon = \delta$, and the constancy of RH and $\alpha$ then implies that $\varepsilon$ and $\delta$ are both constant.
 
 
-To set up the problem, we must write down two expressions for the vertical derivative of MSE$^*$ that can be combined to give an expression for $\Gamma$.  Using the zero-buoyancy plume approximation, MSE$^*$ of the environment is equal to MSE$^*$ of the convection.  Recalling the definitions $\mse^* = c_p T + L q_v^* + gz$ and $\gamma \equiv -\ppz \log(q_v^*)$, we can write 
+To set up the problem, we must write down two expressions for the vertical derivative of MSE$^*$ that can be combined to give an expression for $\Gamma$.  Using the zero-buoyancy plume approximation, MSE$^*$ of the environment is equal to MSE$^*$ of the convection.  Recalling the definitions $\mse^* = c_p T + L q_v^* + gz$ and $\gamma \equiv -\ppz \log(q_v^*)$, we can write
 \[
 \ppz \mse{}^* \; = \; -c_p \Gamma + g - L \gamma q_v^* \, .
 \]
@@ -1166,4 +1167,3 @@ Since water vapor is a small-mixing-ratio trace gas, we can approximate this in 
 \ppt (\rho q_v) + \grad \cdot (\rho q_v \vec{u}) &= -c \\
 p &= R\rho T \, .
 \end{align}
-
